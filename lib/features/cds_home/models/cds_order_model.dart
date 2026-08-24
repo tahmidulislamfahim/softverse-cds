@@ -10,6 +10,7 @@ class CdsOrderModel {
   final double totalAmount;
   final double amountReceived;
   final double changeToReturn;
+  final bool isPaid;
   final List<CdsPurchaseItemModel> items;
 
   const CdsOrderModel({
@@ -22,6 +23,7 @@ class CdsOrderModel {
     required this.totalAmount,
     required this.amountReceived,
     required this.changeToReturn,
+    required this.isPaid,
     required this.items,
   });
 
@@ -47,6 +49,7 @@ class CdsOrderModel {
       totalAmount: _money(json['totalAmount']),
       amountReceived: _money(json['amountReceived']),
       changeToReturn: _money(json['changeToReturn']),
+      isPaid: json['status']?.toString() == 'paid',
       items: items,
     );
   }

@@ -21,6 +21,7 @@ class CdsBillAmountsCard extends StatelessWidget {
     final total = order?.totalAmount ?? 0;
     final received = order?.amountReceived ?? 0;
     final change = order?.changeToReturn ?? 0;
+    final isPaid = order?.isPaid ?? false;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,47 +68,52 @@ class CdsBillAmountsCard extends StatelessWidget {
                 value: '\$${_amount.format(total)}',
                 boldValue: true,
               ),
-              SizedBox(height: 12.h),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Amount Received',
-                      style: getTextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
+              // Amount received/change only exist once payment is actually
+              // taken — showing them earlier would claim money changed
+              // hands before it did.
+              if (isPaid) ...[
+                SizedBox(height: 12.h),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Amount Received',
+                        style: getTextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                        vertical: 8.h,
+                      ),
+                      decoration: BoxDecoration(
                         color: Colors.white,
+                        borderRadius: BorderRadius.circular(4.r),
+                      ),
+                      child: Text(
+                        '\$${_amount.format(received)}',
+                        style: getTextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.dashboardTextDark,
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10.w,
-                      vertical: 8.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(4.r),
-                    ),
-                    child: Text(
-                      '\$${_amount.format(received)}',
-                      style: getTextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.dashboardTextDark,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 11.h),
-              const _DashedDivider(),
-              SizedBox(height: 11.h),
-              _Row(
-                label: 'Change to Return',
-                value: '\$${_amount.format(change)}',
-                boldValue: true,
-              ),
+                  ],
+                ),
+                SizedBox(height: 11.h),
+                const _DashedDivider(),
+                SizedBox(height: 11.h),
+                _Row(
+                  label: 'Change to Return',
+                  value: '\$${_amount.format(change)}',
+                  boldValue: true,
+                ),
+              ],
             ],
           ),
         ),

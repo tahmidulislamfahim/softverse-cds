@@ -22,6 +22,16 @@ class AppNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (url.trim().isEmpty) {
+      return Container(
+        width: width,
+        height: height,
+        color: backgroundColor,
+        alignment: Alignment.center,
+        child: Icon(Iconsax.gallery_slash, color: Colors.grey, size: width * 0.4),
+      );
+    }
+
     return ClipRRect(
       borderRadius: borderRadius,
       child: Image.network(

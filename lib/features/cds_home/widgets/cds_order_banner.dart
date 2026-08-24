@@ -33,14 +33,18 @@ class CdsOrderBanner extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '$posLabel Order-$orderPart',
-                style: getTextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.dashboardTextDark,
+              Expanded(
+                child: Text(
+                  '$posLabel Order-$orderPart',
+                  overflow: TextOverflow.ellipsis,
+                  style: getTextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.dashboardTextDark,
+                  ),
                 ),
               ),
+              SizedBox(width: 8.w),
               Text(
                 'Total Item- $itemsPart',
                 style: getTextStyle(
