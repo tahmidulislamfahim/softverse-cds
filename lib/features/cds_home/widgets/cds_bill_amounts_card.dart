@@ -17,6 +17,7 @@ class CdsBillAmountsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final subtotal = order?.subtotal ?? 0;
     final tax = order?.tax ?? 0;
+    final taxRatePercent = order?.taxRatePercent ?? 0;
     final total = order?.totalAmount ?? 0;
     final received = order?.amountReceived ?? 0;
     final change = order?.changeToReturn ?? 0;
@@ -54,7 +55,10 @@ class CdsBillAmountsCard extends StatelessWidget {
             children: [
               _Row(label: 'Subtotal', value: '\$${_amount.format(subtotal)}'),
               SizedBox(height: 4.h),
-              _Row(label: 'TAX (7.5%)', value: '\$${_amount.format(tax)}'),
+              _Row(
+                label: 'TAX (${taxRatePercent.toStringAsFixed(1)}%)',
+                value: '\$${_amount.format(tax)}',
+              ),
               SizedBox(height: 11.h),
               const _DashedDivider(),
               SizedBox(height: 11.h),

@@ -7,6 +7,7 @@ class StorageService {
   static const String _nameKey = 'fullName';
   static const String _emailKey = 'email';
   static const String _themeModeKey = 'themeMode';
+  static const String _mainStationUrlKey = 'mainStationUrl';
 
   static SharedPreferences? _preferences;
 
@@ -58,5 +59,12 @@ class StorageService {
 
   static Future<void> setThemeMode(String mode) async {
     await _preferences?.setString(_themeModeKey, mode);
+  }
+
+  static String? get mainStationUrl =>
+      _preferences?.getString(_mainStationUrlKey);
+
+  static Future<void> setMainStationUrl(String url) async {
+    await _preferences?.setString(_mainStationUrlKey, url);
   }
 }
