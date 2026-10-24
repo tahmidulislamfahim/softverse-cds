@@ -120,14 +120,17 @@ class _BreakdownRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          label,
-          style: getTextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: AppColors.dashboardTextDark,
+        Expanded(
+          child: Text(
+            label,
+            style: getTextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: AppColors.dashboardTextDark,
+            ),
           ),
         ),
+        SizedBox(width: 8.w),
         Text(
           value,
           style: getTextStyle(

@@ -85,6 +85,7 @@ class CdsBillAmountsCard extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(width: 8.w),
                     Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: 10.w,
@@ -134,14 +135,17 @@ class _Row extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          label,
-          style: getTextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            color: Colors.white,
+        Expanded(
+          child: Text(
+            label,
+            style: getTextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: Colors.white,
+            ),
           ),
         ),
+        SizedBox(width: 8.w),
         Text(
           value,
           style: getTextStyle(

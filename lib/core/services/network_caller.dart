@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-import 'package:get/get.dart' hide Response, MultipartFile;
 import 'package:http/http.dart';
 
 import '../models/response_data.dart';
-import '../utils/constants/api_constants.dart';
 import '../services/storage_service.dart';
 
 class NetworkCaller {
